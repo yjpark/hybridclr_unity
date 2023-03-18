@@ -35,6 +35,7 @@ namespace HybridCLR.Editor.ReversePInvokeWrap
         {
             foreach(var assemblyName in assemblyNames)
             {
+                if (assemblyName == "netstandard") continue;
                 _rootModules.Add(cache.LoadModule(assemblyName));
             }
         }

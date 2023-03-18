@@ -61,11 +61,15 @@ namespace HybridCLR.Editor.Meta
             {
                 return mod;
             }
+            if (moduleName == "netstandard") {
+                return null;
+            }
             mod = DoLoadModule(_assemblyPathResolver.ResolveAssembly(moduleName, true));
             LoadedModules.Add(moduleName, mod);
 
             foreach (var refAsm in mod.GetAssemblyRefs())
             {
+                if (refAsm == null) continue;
                 LoadModule(refAsm.Name);
             }
             return mod;

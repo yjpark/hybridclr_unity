@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace HybridCLR.Editor.Meta
 {
@@ -12,7 +13,11 @@ namespace HybridCLR.Editor.Meta
         {
             if (TryResolveAssembly(assemblyName, out string assemblyPath))
             {
+                Debug.Log($"ResolveAssembly: {assemblyName} -> {assemblyPath}");
                 return assemblyPath;
+            }
+            if (assemblyName == "netstandard") {
+                return null;
             }
             if (throwExIfNotFind)
             {
